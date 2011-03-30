@@ -121,7 +121,7 @@ else if ($format == "pachube") {
   header('Content-Disposition: attachment; filename="nbso.json"');
  
   $nbso_pachube['title'] = "New Brunswick System Operator Net Scheduled Interchange";
-  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island. NOTE that this is NOT an official project of the NBSO.";
+  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island. NOTE that this is NOT an official project of the NBSO. Negative values are energy sent TO New Brunswick and positive values are energy pulled FROM New Brunswick.";
   $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/nbso/get-nbso-data.php?format=pachube";
   $nbso_pachube['website'] = "http://www.nbso.ca/Public/en/SystemInformation_realtime.asp";
   $nbso_pachube['email'] = "reinvented+nbso@gmail.com";
