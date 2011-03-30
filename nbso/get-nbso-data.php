@@ -133,7 +133,7 @@ else if ($format == "pachube") {
   $nbso_pachube['tags'] = array("energy","interchange","reliabilitycoordinator","nerc");
  
   foreach($nbso_data as $id => $value) {
-    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => ($value * 1000000),"unit" => array("type" => "derivedSI","label" => "Watts","symbol" => "W"));
+    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
   }
   
   print json_encode($nbso_pachube);
