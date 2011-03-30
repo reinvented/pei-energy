@@ -33,8 +33,24 @@
 
 /**
   * Set the output format to either "json" or "xml" depending on your needs.
+  * Can be set either on command line -- get-nbso-data.php xml or as a parameter
+  * if served as a web page -- .../get-nbso-data.php?format=xml
+  * Default is to serve XML.
   */
-$format = "json";
+if ($_GET) {
+  $format = $_GET['format'];
+}
+else if ($argv[1]) {
+  $format = $argv[1];
+}
+if (!$format) {
+  $format = "xml";
+}
+
+/**
+  * Set the default time zone to Atlantic Standard Time.
+  */
+date_default_timezone_set("America/Halifax");
 
 /**
   * These are the columns of data present on http://www.nbso.ca/Public/en/SystemInformation_realtime.asp
@@ -74,6 +90,9 @@ $nbso_data['unix_timestamp'] = mktime();
   * Otherwise output it as JSON (using PHP's built-in JSON juju).
   */
 if ($format == "xml") {
+  header('Content-type: application/xml');
+  header('Content-Disposition: attachment; filename="nbso.xml"');
+
   require_once("XML/Serializer.php");
 
   $options = array(
@@ -94,5 +113,8 @@ if ($format == "xml") {
   }
 }
 else {
+  header('Content-type: application/json');
+  header('Content-Disposition: attachment; filename="nbso.json"');
+
   print json_encode($nbso_data);
 }
