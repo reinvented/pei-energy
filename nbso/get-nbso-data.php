@@ -55,7 +55,15 @@ date_default_timezone_set("America/Halifax");
 /**
   * These are the columns of data present on http://www.nbso.ca/Public/en/SystemInformation_realtime.asp
   */
-$nsbo_columns = array("NB-Load","NB-Demand","ISO-NE","NMISA","HYDRO-QUEBEC","NOVA-SCOTIA","PEI");
+$nsbo_columns = array(
+                  array("id" => "NB-Load",      "tags" => array("NewBrunswick","NBPower","nb","load")),
+                  array("id" => "NB-Demand",    "tags" => array("NewBrunswick","NBPower","nb","demand")),
+                  array("id" => "ISO-NE",       "tags" => array("NewEngland","interchange")),
+                  array("id" => "NMISA",        "tags" => array("Maine","NorthernMaine","NMISA","interchange")),
+                  array("id" => "HYDRO-QUEBEC", "tags" => array("Quebec","HydroQuebec","interchange")),
+                  array("id" => "NOVA-SCOTIA",  "tags" => array("NovaScotia","ns","Emera","interchange")),
+                  array("id" => "PEI",          "tags" => array("PrinceEdwardIsland","pei","MaritimeElectric","interchange"))
+                  );
 
 /**
   * Grab the NBSO System Information web page so that data can be scraped out of it.
@@ -80,7 +88,8 @@ preg_match_all("/<td nowrap bgcolor=\"\" align=\"center\">(.*)<\/td>/",$html,$ma
   * called $nbso_data, keyed to the actual names of the data columns we set in $$nsbo_columns.
   */
 foreach($matches as $key => $value) {
-  $nbso_data[$nsbo_columns[$key]] = $value[1];
+  $nbso_data[$nsbo_columns[$key]["id"]] = $value[1];
+  $nbso_tags[$nsbo_columns[$key]["id"]] = $nsbo_columns[$key]["tags"];
 }
 
 /**
@@ -133,7 +142,7 @@ else if ($format == "pachube") {
   $nbso_pachube['tags'] = array("energy","interchange","reliabilitycoordinator","nerc");
  
   foreach($nbso_data as $id => $value) {
-    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
+    $nbso_pachube['datastreams'][] = array("id" => $id,"tags" => $nbso_tags[$id], "current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
   }
   
   print json_encode($nbso_pachube);
