@@ -83,8 +83,6 @@ foreach($matches as $key => $value) {
   $nbso_data[$nsbo_columns[$key]] = $value[1];
 }
 
-$nbso_data['unix_timestamp'] = mktime();
-
 /**
   * If the format is XML, then use the PEAR XML_Serializer to turn our result array into XML.
   * Otherwise output it as JSON (using PHP's built-in JSON juju).
@@ -126,8 +124,11 @@ else if ($format == "pachube") {
   $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island.";
   $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/nbso/get-nbso-data.php?format=pachube";
   $nbso_pachube['version'] = "1.0.0";  
-  $nbso_pachube['datastreams'] = $nbso_data;
  
+  foreach($nbso_data as $id => $value) {
+    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => $value);
+  }
+  
   print json_encode($nbso_pachube);
  
 }
