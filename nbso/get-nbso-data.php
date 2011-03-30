@@ -121,12 +121,18 @@ else if ($format == "pachube") {
   header('Content-Disposition: attachment; filename="nbso.json"');
  
   $nbso_pachube['title'] = "New Brunswick System Operator Net Scheduled Interchange";
-  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island.";
+  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island. NOTE that this is NOT an official project of the NBSO.";
   $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/nbso/get-nbso-data.php?format=pachube";
+  $nbso_pachube['website'] = "http://www.nbso.ca/Public/en/SystemInformation_realtime.asp";
   $nbso_pachube['version'] = "1.0.0";  
+  $nbso_pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S");
+  $nbso_pachube['location']['name'] = "New Brunswick System Operator";
+  $nbso_pachube['location']['lat'] = "45.9658658";
+  $nbso_pachube['location']['lon'] = "-66.5975653";
+  $nbso_pachube['tags'] = array("energy","interchange","reliabilitycoordinator","nerc");
  
   foreach($nbso_data as $id => $value) {
-    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => $value);
+    $nbso_pachube['datastreams'][] = array("id" => $id,"current_value" => ($value * 1000000),"units" => "watt","unit_symbol" => "W", "unit_type" => "derivedSI");
   }
   
   print json_encode($nbso_pachube);
