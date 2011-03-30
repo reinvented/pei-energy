@@ -67,6 +67,8 @@ foreach($matches as $key => $value) {
   $nbso_data[$nsbo_columns[$key]] = $value[1];
 }
 
+$nbso_data['unix_timestamp'] = mktime();
+
 /**
   * If the format is XML, then use the PEAR XML_Serializer to turn our result array into XML.
   * Otherwise output it as JSON (using PHP's built-in JSON juju).
