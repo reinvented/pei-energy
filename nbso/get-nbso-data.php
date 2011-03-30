@@ -112,9 +112,22 @@ if ($format == "xml") {
    print $serializer->getSerializedData();
   }
 }
-else {
+else if ($format == "json") {
   header('Content-type: application/json');
   header('Content-Disposition: attachment; filename="nbso.json"');
 
   print json_encode($nbso_data);
+}
+else if ($format == "pachube") {
+  header('Content-type: application/json');
+  header('Content-Disposition: attachment; filename="nbso.json"');
+ 
+  $nbso_pachube['title'] = "New Brunswick System Operator Net Scheduled Interchange";
+  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island.";
+  $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/nbso/get-nbso-data.php?format=pachube";
+  $nbso_pachube['version'] = "1.0.0";  
+  $nbso_pachube['datastreams'] = $nbso_data;
+ 
+  print json_encode($nbso_pachube);
+ 
 }
