@@ -1,0 +1,122 @@
+	<current_observation>
+		<credit>Weather Underground NOAA Weather Station</credit>
+		<credit_URL>http://wunderground.com/</credit_URL>
+		<termsofservice link="http://www.wunderground.com/members/tos.asp#api" />
+		<image>
+		<url>http://icons-ecast.wxug.com/graphics/wu2/logo_130x80.png</url>
+		<title>Weather Underground</title>
+
+		<link>http://wunderground.com/</link>
+		</image>
+  <display_location>
+  <full>East Point, Prince Edward Island</full>
+  <city>East Point</city>
+  <state>PE</state>
+  <state_name>Prince Edward Island</state_name>
+
+  <country>CA</country>
+  <country_iso3166>CA</country_iso3166>
+  <zip>00000</zip>
+  <latitude>46.45000076</latitude>
+  <longitude>-61.97000122</longitude>
+  <elevation>11.00000000 ft</elevation>
+
+  </display_location>
+		<observation_location>
+		<full>East Point, </full>
+		<city>East Point</city>
+		<state></state>
+		<country>CA</country>
+		<country_iso3166>CA</country_iso3166>
+
+		<latitude>46.45000076</latitude>
+		<longitude>-61.97000122</longitude>
+		<elevation>36 ft</elevation>
+		</observation_location>
+		<station_id>CWEP</station_id>
+		<observation_time>Last Updated on March 31, 9:00 AM ADT</observation_time>
+
+		<observation_time_rfc822>Thu, 31 March 2011 12:00:00 GMT</observation_time_rfc822>
+		<observation_epoch>1301572800</observation_epoch>
+		<local_time>March 31, 9:26 AM ADT</local_time>
+		<local_time_rfc822>Thu, 31 March 2011 12:26:41 GMT</local_time_rfc822>
+		<local_epoch>1301574401</local_epoch>
+		<weather>N/A</weather>
+
+		<temperature_string>32 F (0 C)</temperature_string>
+		<temp_f>32</temp_f>
+		<temp_c>0</temp_c>
+		<relative_humidity>90%</relative_humidity>
+		<wind_string>From the WNW at 8 MPH </wind_string>
+		<wind_dir>WNW</wind_dir>
+
+		<wind_degrees>300</wind_degrees>
+		<wind_mph>8</wind_mph>
+		<wind_gust_mph></wind_gust_mph>
+		<pressure_string>29.93 in (1013 mb)</pressure_string>
+		<pressure_mb>1013</pressure_mb>
+		<pressure_in>29.93</pressure_in>
+
+		<dewpoint_string>29 F (-2 C)</dewpoint_string>
+		<dewpoint_f>29</dewpoint_f>
+		<dewpoint_c>-2</dewpoint_c>
+		
+		<heat_index_string>NA</heat_index_string>
+		<heat_index_f>NA</heat_index_f>
+		<heat_index_c>NA</heat_index_c>
+
+		
+		
+		<windchill_string>25 F (-4 C)</windchill_string>
+		<windchill_f>25</windchill_f>
+		<windchill_c>-4</windchill_c>
+		
+		<visibility_mi>N/A</visibility_mi>
+		<visibility_km>N/A</visibility_km>
+		<icons>
+
+			<icon_set name="Default">
+				<icon_url>http://icons-ecast.wxug.com/i/c/a/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Smiley">
+				<icon_url>http://icons-ecast.wxug.com/i/c/b/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Generic">
+				<icon_url>http://icons-ecast.wxug.com/i/c/c/unknown.gif</icon_url>
+
+			</icon_set>
+			<icon_set name="Old School">
+				<icon_url>http://icons-ecast.wxug.com/i/c/d/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Cartoon">
+				<icon_url>http://icons-ecast.wxug.com/i/c/e/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Mobile">
+
+				<icon_url>http://icons-ecast.wxug.com/i/c/f/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Simple">
+				<icon_url>http://icons-ecast.wxug.com/i/c/g/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Contemporary">
+				<icon_url>http://icons-ecast.wxug.com/i/c/h/unknown.gif</icon_url>
+
+			</icon_set>
+			<icon_set name="Helen">
+				<icon_url>http://icons-ecast.wxug.com/i/c/i/unknown.gif</icon_url>
+			</icon_set>
+			<icon_set name="Incredible">
+				<icon_url>http://icons-ecast.wxug.com/i/c/k/unknown.gif</icon_url>
+			</icon_set>
+		</icons>
+
+		<icon_url_base>http://icons-ecast.wxug.com/graphics/conds/</icon_url_base>
+		<icon_url_name>.GIF</icon_url_name>
+		<icon>unknown</icon>
+		<forecast_url>http://www.wunderground.com/global/stations/71412.html</forecast_url>
+		<history_url>http://www.wunderground.com/history/airport/CWEP/2011/3/31/DailyHistory.html</history_url>
+		<ob_url>http://www.wunderground.com/cgi-bin/findweather/getForecast?query=46.45000076,-61.97000122</ob_url>
+
+	</current_observation>
+
+<!-- 0.046:0 -->
