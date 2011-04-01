@@ -1,15 +1,14 @@
 body {
   width: 320px;
+  font-family: Verdana,sans-serif;
 }
 h1 {
-  font-family: Verdana,sans-serif;
   font-size: 120%;
   margin: 0 0 4px 0;
   padding: 0;
   text-align: center;
 }
 h2 {
-  font-family: Verdana,sans-serif;
   font-size: 100%;
   margin: 0 0 4px 0;
   padding: 0;
