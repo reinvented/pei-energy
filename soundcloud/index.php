@@ -58,7 +58,7 @@ print "<h1>New Brunswick to Prince Edward Island Energy Flow</h1>\n";
 /**
   * Output the tracks as an HTML5 audio element.
   */
-print "<audio id=\"audioplayer\" controls=\"controls\">\n";
+print "<audio id=\"audioplayer\" controls=\"controls\" autoplay=\"autoplay\">\n";
 foreach($tracks as $key => $track) {
   print "<source src=\"" . $track->{"stream-url"} . "?consumer_key=" . $souncloud_client_id . "\" type=\"audio/mpeg\" />\n";
 }
