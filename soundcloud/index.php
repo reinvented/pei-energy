@@ -49,6 +49,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
 print "<!DOCTYPE html>\n";
 print "<head>\n";
 print "<title>New Brunswick to Prince Edward Island Energy Flow as SoundCloud Tracks</title>\n";
+print "<link href=\"index.css\" media=\"all\" rel=\"stylesheet\" type=\"text/css\" />\n";
 print "</head>\n";
 print "<body>\n";
 print "<h1>New Brunswick to Prince Edward Island Energy Flow as SoundCloud Tracks</h1>\n";

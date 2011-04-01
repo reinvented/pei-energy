@@ -1,0 +1,10 @@
+body {
+  width: 320px;
+}
+#audioplayer {
+  width: 300px;
+}
+#energy {
+  font-size: 160%;
+  font-weight: bold;
+}
