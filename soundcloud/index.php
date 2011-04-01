@@ -53,11 +53,8 @@ print "<link href=\"index.css\" media=\"all\" rel=\"stylesheet\" type=\"text/css
 print "<meta name=\"viewport\" content=\"width=device-width\">\n";
 print "</head>\n";
 print "<body>\n";
-print "<h1>New Brunswick to Prince Edward Island Energy Flow as SoundCloud Tracks</h1>\n";
-print "<p>Takes the current <a href=\"http://www.pachube.com/feeds/21695\">New Brunswick to Prince Edward Island energy interchange</a> in megawatts, and uses this to find <a href=\"soundcloud.com\">SoundCloud.com</a> tracks of that beat-per-minute, allowing you to \"hear\" the flow.</p>\n";
-print "<p>Streams are MP3, so for this to work in a browser, you'll need something that plays MP3 streams in an HTML5 audio element.</p>\n";
-print "<h2>Current Energy Interchange</h2>\n";
-print "<div id=\"energy\">" . $bpm . " MW</div>";
+print "<h1>New Brunswick to Prince Edward Island Energy Flow</h1>\n";
+
 /**
   * Output the tracks as an HTML5 audio element.
   */
@@ -66,5 +63,11 @@ foreach($tracks as $key => $track) {
   print "<source src=\"" . $track->{"stream-url"} . "?consumer_key=" . $souncloud_client_id . "\" type=\"audio/mpeg\" />\n";
 }
 print "</audio>\n";
+
+print "<h2>Current Energy Interchange</h2>\n";
+print "<div id=\"energy\">" . $bpm . " megawatts</div>";
+
+print "<p>Takes the current <a href=\"http://www.pachube.com/feeds/21695\">New Brunswick to Prince Edward Island energy interchange</a> in megawatts, and uses this to find <a href=\"soundcloud.com\">SoundCloud.com</a> tracks of that beat-per-minute, allowing you to \"hear\" the flow.</p>\n";
+print "<p>Streams are MP3, so for this to work in a browser, you'll need something that plays MP3 streams in an HTML5 audio element.</p>\n";
 
 print "</body>";
