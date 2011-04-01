@@ -29,7 +29,19 @@
   * @license http://www.fsf.org/licensing/licenses/gpl.txt GNU Public License
   */
 
-$stationquery = "East Point, Prince Edward Island";
+/**
+  * Set the weather station. This needs to match a *single* Wunderground.com
+  * weather station.
+  */
+if ($_GET) {
+  $stationquery = $_GET['stationquery'];
+}
+else if ($argv[1]) {
+  $stationquery = $argv[1];
+}
+if (!$stationquery) {
+  $stationquery = "East Point, Prince Edward Island";
+}
 
 /**
   * Set the default time zone to Atlantic Standard Time.
@@ -50,9 +62,7 @@ $pachube['website'] = "http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/i
 $pachube['email'] = "reinvented+wunderground@gmail.com";
 $pachube['version'] = "1.0.0";  
 $pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S");
-$pachube['location']['name'] = "East Point, Prince Edward Island, Canada";
-$pachube['location']['lat'] = "46.45000076";
-$pachube['location']['lon'] = "-61.97000122";
+$pachube['location']['name'] = $stationquery;
 $pachube['tags'] = array("weather","wind");
 
 $pachube['datastreams'][] = array("id" => "windspeed", "current_value" => $kmh,"unit" => array("type" => "derivedSI", "label" => "Kilometers Per Hour","symbol" => "km/h"));
