@@ -1,7 +1,6 @@
 body {
   width: 320px;
   font-family: Verdana,sans-serif;
-  padding: 0 5px 0 5px;
 }
 h1 {
   font-size: 120%;
@@ -23,4 +22,7 @@ h2 {
   font-size: 160%;
   font-weight: bold;
   text-align: center;
+}
+p {
+ padding: 0 5px 0 5px;
 }
