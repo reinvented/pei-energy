@@ -1,0 +1,53 @@
+<?php
+/**
+  * index.php
+  *
+  * A PHP script to retrieve current New Brunswick to Prince Edward Island
+  * energy interchange from the New Brunswick System Operator via Pachube
+  * and then retrieve tracks from Soundcloud.com and output an HTML5
+  * audio element to play them.
+  *
+  * This program is free software; you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+  * the Free Software Foundation; either version 2 of the License, or (at
+  * your option) any later version.
+  *
+  * This program is distributed in the hope that it will be useful, but
+  * WITHOUT ANY WARRANTY; without even the implied warranty of
+  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+  * General Public License for more details.
+  * 
+  * You should have received a copy of the GNU General Public License
+  * along with this program; if not, write to the Free Software
+  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
+  * USA
+  *
+  * @version 0.1, April 1, 2011
+  * @link https://github.com/reinvented/pei-energy
+  * @author Peter Rukavina <peter@rukavina.net>
+  * @copyright Copyright &copy; 2011, Reinvented Inc.
+  * @license http://www.fsf.org/licensing/licenses/gpl.txt GNU Public License
+  */
+
+require_once("./api-keys-include.php");
+
+/**
+  * Retrieve the current New Brunswick to Prince Edward Island Energy Interchange from
+  * Pachube. This number, handily for our purposes, is in the same range as BPM for music.
+  */
+$energy = simplexml_load_file("http://api.pachube.com/v2/feeds/21695/datastreams/PEI.xml?key=" . $pachube_api_key);
+$bpm = (string)$energy->environment->data->current_value;
+
+/**
+  * Retrieve Soundcloud tracks with the BPM figure we got from Pachube.
+  */
+$tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" . $souncloud_client_id . "&bpm[from]=$bpm&bpm[to]=$bpm");
+
+/**
+  * Output the tracks as an HTML5 audio element.
+  */
+print "<audio controls=\"controls\">\n";
+foreach($tracks as $key => $track) {
+  print "<source src=\"" . $track->{"stream-url"} . "?consumer_key=" . $souncloud_client_id . "\" type=\"audio/mpeg\" />\n";
+}
+print "</audio>\n";
