@@ -63,6 +63,8 @@ $pachube['email'] = "reinvented+wunderground@gmail.com";
 $pachube['version'] = "1.0.0";  
 $pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S");
 $pachube['location']['name'] = $stationquery;
+$pachube['location']['lat'] = (string)$xml->observation_location->latitude;
+$pachube['location']['lon'] = (string)$xml->observation_location->longitude;
 $pachube['tags'] = array("weather","wind");
 
 $pachube['datastreams'][] = array("id" => "windspeed", "current_value" => $kmh,"unit" => array("type" => "derivedSI", "label" => "Kilometers Per Hour","symbol" => "km/h"));
