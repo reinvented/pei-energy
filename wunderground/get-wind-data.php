@@ -57,7 +57,7 @@ header('Content-Disposition: attachment; filename="wind.json"');
 
 $pachube['title'] = "Wind Speed at " . $stationquery;
 $pachube['description'] = "Current wind speed, retrieved using Wunderground.com API, for " . $stationquery;
-$pachube['feed'] = "http://energy.reinvented.net/pei-energy/wunderground/get-wind-data.php";
+$pachube['feed'] = "http://energy.reinvented.net/pei-energy/wunderground/get-wind-data.php?stationquery=" . urlencode($stationquery);
 $pachube['website'] = "http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=" . urlencode($stationquery);
 $pachube['email'] = "reinvented+wunderground@gmail.com";
 $pachube['version'] = "1.0.0";  
