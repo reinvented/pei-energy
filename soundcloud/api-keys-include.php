@@ -4,11 +4,11 @@
   * and then looking under "my settings". You can either use your Master API Key, or you
   * can create an "Additional API Key" just for this application.
   */
-$pachube_api_key   = "";
+$pachube_api_key   = "ugLP-TeToJDCesw_k3kF347rrVw78UEFW9B3jo2Agw4";
 
 /**
   * Your Soundcloud.com Client ID. Get one for free by signing up at https://soundcloud.com/signup
   * and then registering a new application at http://soundcloud.com/you/apps/new - the value
   * you're looking for is the resulting "Client ID".
   */
-$souncloud_client_id = "";
+$souncloud_client_id = "PckzJj6iWa6Fdr5qsZNIRw";
