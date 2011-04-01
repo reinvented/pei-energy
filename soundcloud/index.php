@@ -54,7 +54,7 @@ print "<link rel=\"apple-touch-icon\" href=\"listen-icon.png\" />\n";
 print "<meta name=\"viewport\" content=\"width=device-width\">\n";
 print "</head>\n";
 print "<body>\n";
-print "<h1>New Brunswick to Prince Edward Island Energy Flow</h1>\n";
+print "<h1>New Brunswick to Prince Edward Island Energy</h1>\n";
 
 /**
   * Output the tracks as an HTML5 audio element.
