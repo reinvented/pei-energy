@@ -1,5 +1,4 @@
 body {
-  width: 320px;
   font-family: Verdana,sans-serif;
 }
 h1 {
@@ -24,5 +23,5 @@ h2 {
   text-align: center;
 }
 p {
-  margin: 0 5px 0 5px;
+  margin: 5px;
 }
