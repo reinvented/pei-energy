@@ -60,7 +60,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
   tracks = Array();
   current = 1;
   isPlaying = 0;
-  debug = true;
+  debug = false;
   
 <?php
   /**
