@@ -65,6 +65,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
 
   audio = new Audio();
   tracks = Array();
+  titles = Array();
   current = 1;
   isPlaying = 0;
   debug = false;
@@ -78,6 +79,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
   foreach($tracks as $key => $track) {
     if ($track->{"stream-url"}) {
       print "  tracks[" . $tracknumber . "] = \"" . $track->{"stream-url"} . "?consumer_key=" . $souncloud_client_id . "\";\n";
+      print "  titles[" . $tracknumber . "] = \"<a href='" . $track->{"permalink-url"} . "' target=_BLANK>" . $track->title . "</a>\";\n";
       $tracknumber++;
     }
   }
@@ -86,6 +88,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
   
   function playTrack() {
     playpause = document.getElementById('playpause');
+    trackinfo = document.getElementById('trackinfo');
     if (isPlaying) {
       if (debug) { console.log("isPlaying was true; pausing track " + current) }
       audio.setAttribute("src", tracks[current]);
@@ -97,6 +100,7 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
       if (debug) { console.log("isPlaying was false; playing track " + current) }
       audio.setAttribute("src", tracks[current]);
       playpause.setAttribute("src","button-loading.png");
+      trackinfo.innerHTML = titles[current];
       audio.play();
       isPlaying = true;
     }
@@ -139,9 +143,8 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
 <img onclick="javascript:playTrack()" class="buttons" id="playpause" src="button-play.png" width="128" height="128">
 <img onclick="javascript:nextSong()" class="buttons" id="next" src="button-next.png" width="64" height="64">
 </div>
-<?php
-
-print "<h2>Current Energy Interchange</h2>\n";
-print "<div id=\"energy\">" . $bpm . " megawatts</div>";
-print "<img id=\"pachube\" src=\"http://www.pachube.com/feeds/21695/datastreams/PEI/history.png?w=280&h=120&r=2&s=3&b=true\">";
-print "</body>";
+<div id="trackinfo">&nbsp;</div>
+<h2>Current Energy Interchange</h2>
+<div id="energy"><?php echo $bpm; ?> megawatts</div>
+<img id="pachube" src="http://www.pachube.com/feeds/21695/datastreams/PEI/history.png?w=280&h=120&r=2&s=3&b=true">
+</body>
