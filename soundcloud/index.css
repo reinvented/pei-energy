@@ -31,13 +31,19 @@ h2 {
 #buttonwrapper {
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
   width: 268px;
   height: 128px;
   display: block;
 }
 #previous, #next {
   padding-bottom: 32px;
+}
+#trackinfo {
+  font-size: 80%;
+  padding: 0 5px 10px 5px;
+  text-align: center;
+  overflow: hidden;
 }
 #pachube {
   margin-top: 8px;
