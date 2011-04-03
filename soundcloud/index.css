@@ -24,14 +24,20 @@ h2 {
   font-weight: bold;
   text-align: center;
 }
-#playpause {
-  margin-top: 0;
-  margin-bottom: 0;
+.buttons {
+  margin: 0;
+  padding: 0;
+}
+#buttonwrapper {
   margin-left: auto;
   margin-right: auto;
-  width: 128px;
+  margin-bottom: 8px;
+  width: 268px;
   height: 128px;
   display: block;
+}
+#previous, #next {
+  padding-bottom: 32px;
 }
 #pachube {
   margin-top: 8px;

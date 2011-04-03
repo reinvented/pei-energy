@@ -7,6 +7,13 @@
   * and then retrieve tracks from Soundcloud.com and output an HTML5
   * audio element to play them.
   *
+  * Icons are Freeware from http://www.iconarchive.com/show/I-like-buttons-icons-by-mazenl77.html
+  * 
+  * Play icon from http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/Style-Play-icon.png
+  * Pause icon from http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/128/Style-Pause-icon.png
+  * Next icon from http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/64/Style-Next-icon.png
+  * Previous icon from http://icons.iconarchive.com/icons/mazenl77/I-like-buttons/64/Style-Previous-icon.png
+  *
   * This program is free software; you can redistribute it and/or modify
   * it under the terms of the GNU General Public License as published by
   * the Free Software Foundation; either version 2 of the License, or (at
@@ -89,10 +96,20 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
     else {
       if (debug) { console.log("isPlaying was false; playing track " + current) }
       audio.setAttribute("src", tracks[current]);
-      playpause.setAttribute("src","button-pause.png");
+      playpause.setAttribute("src","button-loading.png");
       audio.play();
       isPlaying = true;
     }
+  }
+  
+  function prevSong() {
+    current--;
+    if (current < 1) {
+      current = maxtracks;
+    }
+    isPlaying = false;
+    if (debug) { console.log("Track ended. Incrementing to track " + current) }
+    playTrack();
   }
   
   function nextSong() {
@@ -105,13 +122,23 @@ $tracks = simplexml_load_file("http://api.soundcloud.com/tracks?consumer_key=" .
     playTrack();
   }
   
+  function showPauseButton() {
+    playpause = document.getElementById('playpause');
+    playpause.setAttribute("src","button-pause.png");
+  }
+  
   audio.addEventListener("ended", nextSong, false);
+  audio.addEventListener("playing", showPauseButton, false);
   
 </script>
 </head>
 <body>
 <h1>New Brunswick to Prince Edward Island Energy Flow</h1>
-<img onclick="javascript:playTrack()" id="playpause" src="button-play.png" width="128" height="128">
+<div id="buttonwrapper">
+<img onclick="javascript:prevSong()" class="buttons" id="previous" src="button-previous.png" width="64" height="64">
+<img onclick="javascript:playTrack()" class="buttons" id="playpause" src="button-play.png" width="128" height="128">
+<img onclick="javascript:nextSong()" class="buttons" id="next" src="button-next.png" width="64" height="64">
+</div>
 <?php
 
 print "<h2>Current Energy Interchange</h2>\n";
