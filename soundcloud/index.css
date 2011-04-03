@@ -41,6 +41,7 @@ h2 {
 }
 #trackinfo {
   font-size: 80%;
+  width: 300px;
   padding: 0 5px 10px 5px;
   text-align: center;
   overflow: hidden;
