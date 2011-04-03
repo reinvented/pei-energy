@@ -1,5 +1,7 @@
 body {
   font-family: Verdana,sans-serif;
+  background: #fff;
+  width: 320px;
 }
 h1 {
   font-size: 120%;
@@ -22,6 +24,23 @@ h2 {
   font-weight: bold;
   text-align: center;
 }
+#playpause {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  width: 128px;
+  height: 128px;
+  display: block;
+}
+#pachube {
+  margin-top: 8px;
+  width: 300px;
+  height: 120px;
+  display: block;
+}  
 p {
   margin: 5px;
+  line-height: 150%;
+  font-size: 90%;
 }
