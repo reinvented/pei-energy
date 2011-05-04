@@ -101,6 +101,7 @@ date_default_timezone_set('America/Halifax');
   * Create a file to hold the meta-data about what we're about to grab.
   */
 $mp = fopen($outputdir . "/maritime-electric-accounts.csv","w");
+fwrite($mp,"NAME,BALANCE,ADDRESS1,SERVICE ADDRESS1,SERVICE ADDRESS2,ADDRESS2,ADDRESS3,ADDRESS4,ACCOUNT NUMBER\n");
 
 /**
   * Start the data retrieving voodoo.
@@ -208,6 +209,7 @@ foreach($html->find('input') as $e) {
       $data[] = $row;
     }
     $fp = fopen($outputdir . "/" . $account['number'] . ".csv","w");
+    fwrite($fp,"TRANSACTION,AMOUNT,DATE\n");
     foreach($data as $key => $value) {
       fwrite($fp,implode(",",$value) . "\n");
     }
