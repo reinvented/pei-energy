@@ -203,7 +203,7 @@ foreach($html->find('input') as $e) {
       $row[0] = trim($row[0]);
       $row[1] = stripDollars($row[1]);
       $row[2] = strtotime($row[2]);
-      $row[3] = strftime("%Y-%m-%d",$row[2]);
+      $row[2] = strftime("%Y-%m-%d",$row[2]);
 
       $data[] = $row;
     }
