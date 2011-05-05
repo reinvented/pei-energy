@@ -196,7 +196,7 @@ foreach($html->find('input') as $e) {
       */
     $data = array();
     $transhtml = file_get_html("$tmpdir/maritimeelectric-transactions-all-$accountnumber.html");
-    foreach($transhtml->find('tr[bgcolor=Gainsboro]') as $r) {
+    foreach($transhtml->find('tr[bgcolor=Gainsboro],tr[bgcolor=#EEEEEE]') as $r) {
       $row = array();
       foreach($r->find('td') as $c) {
         $row[] = $c->plaintext;
