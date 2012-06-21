@@ -121,17 +121,17 @@ else if ($format == "pachube") {
   header('Content-type: application/json');
   header('Content-Disposition: attachment; filename="govpeca.json"');
  
-  $nbso_pachube['title'] = "Prince Edward Island Electricity Load and Generation";
-  $nbso_pachube['description'] = "Data from the Government of Prince Edward Island concerning electricity generation and load.";
-  $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/govpeca/get-govpeca-data.php?format=pachube";
-  $nbso_pachube['website'] = "http://www.gov.pe.ca/energy/js/chart.php";
-  $nbso_pachube['email'] = "reinvented+nbso@gmail.com";
-  $nbso_pachube['version'] = "1.0.0";  
-  $nbso_pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S",$updatetime);
-  $nbso_pachube['location']['name'] = "Prince Edward Island";
-  $nbso_pachube['location']['lat'] = "46.2336";
-  $nbso_pachube['location']['lon'] = "-63.1283";
-  $nbso_pachube['tags'] = array("energy","load","generation","pei");
+  $govpeca_pachube['title'] = "Prince Edward Island Electricity Load and Generation";
+  $govpeca_pachube['description'] = "Data from the Government of Prince Edward Island concerning electricity generation and load.";
+  $govpeca_pachube['feed'] = "http://energy.reinvented.net/pei-energy/govpeca/get-govpeca-data.php?format=pachube";
+  $govpeca_pachube['website'] = "http://www.gov.pe.ca/energy/js/chart.php";
+  $govpeca_pachube['email'] = "reinvented+nbso@gmail.com";
+  $govpeca_pachube['version'] = "1.0.0";  
+  $govpeca_pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S",$updatetime);
+  $govpeca_pachube['location']['name'] = "Prince Edward Island";
+  $govpeca_pachube['location']['lat'] = "46.2336";
+  $govpeca_pachube['location']['lon'] = "-63.1283";
+  $govpeca_pachube['tags'] = array("energy","load","generation","pei");
  
   foreach($govpeca_data as $id => $value) {
     $govpeca_pachube['datastreams'][] = array("id" => $id,"tags" => $govpeca_tags[$id], "current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
