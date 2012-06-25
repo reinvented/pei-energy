@@ -84,7 +84,7 @@ foreach($data[0] as $key => $value) {
   }
 }   
 
-$govpeca_data['percentage-wind'] = ($data[0]->data2 / $data[0]->data1);
+$govpeca_data['percentage-wind'] = number_format(($data[0]->data2 / $data[0]->data1) * 100,2);
 $govpeca_tags['percentage-wind'] = array("PrinceEdwardIsland","electricty","wind","load","renewable","percentage");
 
 /**
@@ -136,8 +136,13 @@ else if ($format == "pachube") {
   $govpeca_pachube['location']['lon'] = "-63.1283";
   $govpeca_pachube['tags'] = array("energy","load","generation","pei");
  
-  foreach($govpeca_data as $id => $value) {
-    $govpeca_pachube['datastreams'][] = array("id" => $id,"tags" => $govpeca_tags[$id], "current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
+  foreach($govpeca_data as $id => $value) {    
+    if ($id == 'percentage-wind') {
+      $govpeca_pachube['datastreams'][] = array("id" => $id,"tags" => $govpeca_tags[$id], "current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "percentage","symbol" => "%"));
+    }
+    else {
+      $govpeca_pachube['datastreams'][] = array("id" => $id,"tags" => $govpeca_tags[$id], "current_value" => ($value),"unit" => array("type" => "derivedSI","label" => "Megawatts","symbol" => "MW"));
+    }
   }
   
   print json_encode($govpeca_pachube);
