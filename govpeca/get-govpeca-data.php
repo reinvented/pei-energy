@@ -33,8 +33,8 @@
 
 /**
   * Set the output format to either "json" or "xml" depending on your needs.
-  * Can be set either on command line -- get-nbso-data.php xml or as a parameter
-  * if served as a web page -- .../get-nbso-data.php?format=xml
+  * Can be set either on command line -- get-govpeca-data.php xml or as a parameter
+  * if served as a web page -- .../get-govpeca-data.php?format=xml
   * Default is to serve XML.
   */
 if ($_GET) {
@@ -64,7 +64,7 @@ $govpeca_columns = array(
                   );
 
 /**
-  * Grab the NBSO System Information web page so that data can be scraped out of it.
+  * Grab the PEI data as JSON.
   */
 $govpeca = "http://www.gov.pe.ca/energy/js/chart-values.php";
 $handle = fopen($govpeca,'rb');
@@ -83,6 +83,9 @@ foreach($data[0] as $key => $value) {
     $govpeca_tags[$govpeca_columns[$key]["id"]] = $govpeca_columns[$key]["tags"];
   }
 }   
+
+$govpeca_data['percentage-wind'] = ($data[0]->{'on-island-wind'} / $data[0]->{'on-island-load'});
+$govpeca_tags['percentage-wind'] = array("PrinceEdwardIsland","electricty","wind","load","renewable","percentage")
 
 /**
   * If the format is XML, then use the PEAR XML_Serializer to turn our result array into XML.
@@ -125,7 +128,7 @@ else if ($format == "pachube") {
   $govpeca_pachube['description'] = "Data from the Government of Prince Edward Island concerning electricity generation and load.";
   $govpeca_pachube['feed'] = "http://energy.reinvented.net/pei-energy/govpeca/get-govpeca-data.php?format=pachube";
   $govpeca_pachube['website'] = "http://www.gov.pe.ca/energy/js/chart.php";
-  $govpeca_pachube['email'] = "reinvented+nbso@gmail.com";
+  $govpeca_pachube['email'] = "reinvented+govpeca@gmail.com";
   $govpeca_pachube['version'] = "1.0.0";  
   $govpeca_pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S",$updatetime);
   $govpeca_pachube['location']['name'] = "Prince Edward Island";
