@@ -84,7 +84,7 @@ foreach($data[0] as $key => $value) {
   }
 }   
 
-$govpeca_data['percentage-wind'] = ($data[0]->{'on-island-wind'} / $data[0]->{'on-island-load'});
+$govpeca_data['percentage-wind'] = ($data[0]->data2 / $data[0]->data1);
 $govpeca_tags['percentage-wind'] = array("PrinceEdwardIsland","electricty","wind","load","renewable","percentage");
 
 /**
