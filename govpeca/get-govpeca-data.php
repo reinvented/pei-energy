@@ -85,7 +85,7 @@ foreach($data[0] as $key => $value) {
 }   
 
 $govpeca_data['percentage-wind'] = ($data[0]->{'on-island-wind'} / $data[0]->{'on-island-load'});
-$govpeca_tags['percentage-wind'] = array("PrinceEdwardIsland","electricty","wind","load","renewable","percentage")
+$govpeca_tags['percentage-wind'] = array("PrinceEdwardIsland","electricty","wind","load","renewable","percentage");
 
 /**
   * If the format is XML, then use the PEAR XML_Serializer to turn our result array into XML.
