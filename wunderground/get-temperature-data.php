@@ -1,8 +1,8 @@
 <?php
 /**
-  * get-wind-data.php
+  * get-temperature-data.php
   *
-  * A PHP script to retrieve wind speed for a given location and from
+  * A PHP script to retrieve current temperature for a given location and from
   * Wunderground.com and format it for feeding to Cosm.
   *
   * Requires XML_Serializer -- install with 'pear install XML_Serializer'.
@@ -40,7 +40,7 @@ else if ($argv[1]) {
   $stationquery = $argv[1];
 }
 if (!$stationquery) {
-  $stationquery = "East Point, Prince Edward Island";
+  $stationquery = "Charlottetown, Prince Edward Island";
 }
 
 /**
@@ -50,14 +50,12 @@ date_default_timezone_set("America/Halifax");
 
 $xml = simplexml_load_file("http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=" . urlencode($stationquery));
 
-$kmh = 1.609344 * (string)$xml->wind_mph;
-
 header('Content-type: application/json');
-header('Content-Disposition: attachment; filename="wind.json"');
+header('Content-Disposition: attachment; filename="temperature.json"');
 
-$pachube['title'] = "Wind Speed at " . $stationquery;
-$pachube['description'] = "Current wind speed, retrieved using Wunderground.com API, for " . $stationquery;
-$pachube['feed'] = "http://energy.reinvented.net/pei-energy/wunderground/get-wind-data.php?stationquery=" . urlencode($stationquery);
+$pachube['title'] = "Temperature Speed at " . $stationquery;
+$pachube['description'] = "Current temperature, retrieved using Wunderground.com API, for " . $stationquery;
+$pachube['feed'] = "http://energy.reinvented.net/pei-energy/wunderground/get-temperature-data.php?stationquery=" . urlencode($stationquery);
 $pachube['website'] = "http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=" . urlencode($stationquery);
 $pachube['email'] = "reinvented+wunderground@gmail.com";
 $pachube['version'] = "1.0.0";  
@@ -65,8 +63,8 @@ $pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S");
 $pachube['location']['name'] = $stationquery;
 $pachube['location']['lat'] = (string)$xml->display_location->latitude;
 $pachube['location']['lon'] = (string)$xml->display_location->longitude;
-$pachube['tags'] = array("weather","wind");
+$pachube['tags'] = array("weather","temperature");
 
-$pachube['datastreams'][] = array("id" => "windspeed", "current_value" => $kmh,"unit" => array("type" => "derivedSI", "label" => "Kilometers Per Hour","symbol" => "km/h"));
+$pachube['datastreams'][] = array("id" => "temperature", "current_value" => (string)$xml->temp_c,"unit" => array("type" => "derivedSI", "label" => "Degrees C","symbol" => "°C"));
 
 print json_encode($pachube);

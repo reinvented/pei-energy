@@ -85,7 +85,7 @@ preg_match_all("/<td nowrap bgcolor=\"\" align=\"center\">(.*)<\/td>/",$html,$ma
 
 /**
   * Take the data points returned in the $matches array and stuff them into an associative array
-  * called $nbso_data, keyed to the actual names of the data columns we set in $$nsbo_columns.
+  * called $nbso_data, keyed to the actual names of the data columns we set in $nsbo_columns.
   */
 foreach($matches as $key => $value) {
   $nbso_data[$nsbo_columns[$key]["id"]] = $value[1];
