@@ -53,7 +53,7 @@ $xml = simplexml_load_file("http://api.wunderground.com/auto/wui/geo/WXCurrentOb
 header('Content-type: application/json');
 header('Content-Disposition: attachment; filename="temperature.json"');
 
-$pachube['title'] = "Temperature Speed at " . $stationquery;
+$pachube['title'] = "Temperature at " . $stationquery;
 $pachube['description'] = "Current temperature, retrieved using Wunderground.com API, for " . $stationquery;
 $pachube['feed'] = "http://energy.reinvented.net/pei-energy/wunderground/get-temperature-data.php?stationquery=" . urlencode($stationquery);
 $pachube['website'] = "http://api.wunderground.com/auto/wui/geo/WXCurrentObXML/index.xml?query=" . urlencode($stationquery);
