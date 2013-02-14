@@ -9,7 +9,6 @@ import sys
 import urllib
 import ConfigParser
 import os
-from eeml import *
 
 config = ConfigParser.ConfigParser()
 config.read(os.path.expanduser('~/.temphumid.cfg'))
@@ -48,12 +47,8 @@ while 1:
 	
 			try:
 				pac.put()
-			except CosmError, e:
-				print('ERROR: pac.put(): {}'.format(e))
-			except StandardError:
-				print('ERROR: StandardError')
 			except:
-				print('ERROR: Unexpected error: %s' % sys.exc_info()[0])
+				print('ERROR: pac.put()')
 				
 			# Send to Thingspeak
 			urllib.urlopen("http://api.thingspeak.com/update?key=" \
