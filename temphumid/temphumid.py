@@ -9,6 +9,7 @@ import sys
 import urllib
 import ConfigParser
 import os
+import json
 
 config = ConfigParser.ConfigParser()
 config.read(os.path.expanduser('~/.temphumid.cfg'))
@@ -18,6 +19,9 @@ arduino_serial_port = config.get('Arduino', 'arduino_serial_port', 0)
 cosm_api_key = config.get('COSM', 'cosm_api_key', 0)
 cosm_api_url = config.get('COSM', 'cosm_api_url', 0)
 thingspeak_api_key = config.get('ThingSpeak', 'thingspeak_api_key', 0)
+sen_se_api_key = config.get('Sen.se', 'sen_se_api_key', 0)
+sen_se_temperature_id = config.get('Sen.se', 'sen_se_temperature_id', 0)
+sen_se_humidity_id = config.get('Sen.se', 'sen_se_humidity_id', 0)
 
 arduino = serial.Serial(arduino_serial_port, 115200)
 
@@ -55,5 +59,12 @@ while 1:
 				+ thingspeak_api_key \
 				+ "&field1=" + temperature \
 				+ "&field2=" + humidity)
-
+				
+			# Send to Sen.se
+			sen_se_endpoint = 'http://api.sen.se/events/?sense_key=' + sen_se_api_key
+			sen_se_data = json.dumps({"feed_id":sen_se_temperature_id, "value":temperature})
+			urllib.urlopen(sen_se_endpoint, sen_se_data)
+			sen_se_data = json.dumps({"feed_id":sen_se_humidity_id, "value":humidity})
+			urllib.urlopen(sen_se_endpoint, sen_se_data)
+			
 	time.sleep(30) ## sleep for 60 seconds
