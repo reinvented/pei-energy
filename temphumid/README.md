@@ -1,7 +1,7 @@
 temphumid.py
 ============
 
-A Python script to poll an Arduino for temperature and humidity data (in my case from a DHT22 sensor) and echo this to the screen, upload to cosm.com and thingspeak.com.
+A Python script to poll an Arduino for temperature and humidity data (in my case from a DHT22 sensor) and echo this to the screen, upload to cosm.com, thingspeak.com and open.sen.se.
 
 Code adapted from [http://community.cosm.com/?q=node/114](http://community.cosm.com/?q=node/114)
 
@@ -13,6 +13,7 @@ Requirements
  * pySerial - [http://pyserial.sourceforge.net/](http://pyserial.sourceforge.net/)
  * Account on [cosm.com](http://cosm.com)
  * Account on [thingspeak.com](http://thingspeak.com)
+ * Account on [open.sen.se](http://open.sen.se)
  
 Arduino Setup
 -------------
@@ -36,6 +37,11 @@ Create a configuration file at ~/.temphumid.cfg with these settings:
 
 	[ThingSpeak]
 	thingspeak_api_key = **Put your thingspeak.com API key here**
+	
+	[Sen.se]
+	sen_se_api_key = **Put your open.sen.se API key here**
+	sen_se_temperature_id = **Put your open.sen.se temperature feed ID here**
+	sen_se_humidity_id = **Put your open.sen.se humidity feed ID here**
 	
 You can find the value for *arduino_serial_port* in your Arduino editor.
 
