@@ -25,6 +25,8 @@ sen_se_humidity_id = config.get('Sen.se', 'sen_se_humidity_id', 0)
 
 arduino = serial.Serial(arduino_serial_port, 115200)
 
+datacounter = 0
+
 while 1:
 
 	gotdata = 0
@@ -43,28 +45,35 @@ while 1:
 				+ readings[1] + ' degrees | ' \
 				+ readings[0] + '% humidity'
 			sys.stdout.flush() 
+
+			datacounter = datacounter + 1
 			
-			# Send to COSM.com
-			pac = eeml.datastream.Cosm(cosm_api_url, cosm_api_key)
-			pac.update([eeml.Data(0, temperature, unit=eeml.unit.Celsius()), \
-				eeml.Data(1, humidity, unit=eeml.unit.RH())])
+			if (datacounter > 30):
+				datacounter = 0
+				print time.asctime() + '\tUploading data'
+				sys.stdout.flush() 
+			
+				# Send to COSM.com
+				pac = eeml.datastream.Cosm(cosm_api_url, cosm_api_key)
+				pac.update([eeml.Data(0, temperature, unit=eeml.unit.Celsius()), \
+					eeml.Data(1, humidity, unit=eeml.unit.RH())])
 	
-			try:
-				pac.put()
-			except:
-				print('ERROR: pac.put()')
+				try:
+					pac.put()
+				except:
+					print('ERROR: pac.put()')
 				
-			# Send to Thingspeak
-			urllib.urlopen("http://api.thingspeak.com/update?key=" \
-				+ thingspeak_api_key \
-				+ "&field1=" + temperature \
-				+ "&field2=" + humidity)
+				# Send to Thingspeak
+				urllib.urlopen("http://api.thingspeak.com/update?key=" \
+					+ thingspeak_api_key \
+					+ "&field1=" + temperature \
+					+ "&field2=" + humidity)
 				
-			# Send to Sen.se
-			sen_se_endpoint = 'http://api.sen.se/events/?sense_key=' + sen_se_api_key
-			sen_se_data = json.dumps({"feed_id":sen_se_temperature_id, "value":temperature})
-			urllib.urlopen(sen_se_endpoint, sen_se_data)
-			sen_se_data = json.dumps({"feed_id":sen_se_humidity_id, "value":humidity})
-			urllib.urlopen(sen_se_endpoint, sen_se_data)
+				# Send to Sen.se
+				sen_se_endpoint = 'http://api.sen.se/events/?sense_key=' + sen_se_api_key
+				sen_se_data = json.dumps({"feed_id":sen_se_temperature_id, "value":temperature})
+				urllib.urlopen(sen_se_endpoint, sen_se_data)
+				sen_se_data = json.dumps({"feed_id":sen_se_humidity_id, "value":humidity})
+				urllib.urlopen(sen_se_endpoint, sen_se_data)
 			
-	time.sleep(30) ## sleep for 60 seconds
+
