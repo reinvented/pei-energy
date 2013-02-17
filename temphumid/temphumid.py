@@ -61,19 +61,28 @@ while 1:
 				try:
 					pac.put()
 				except:
-					print('ERROR: pac.put()')
+					print('ERROR: upload to Cosm')
 				
 				# Send to Thingspeak
-				urllib.urlopen("http://api.thingspeak.com/update?key=" \
-					+ thingspeak_api_key \
-					+ "&field1=" + temperature \
-					+ "&field2=" + humidity)
+				try:
+					urllib.urlopen("http://api.thingspeak.com/update?key=" \
+						+ thingspeak_api_key \
+						+ "&field1=" + temperature \
+						+ "&field2=" + humidity)
+				except:
+					print('ERROR: upload to ThingSpeak')
 				
 				# Send to Sen.se
 				sen_se_endpoint = 'http://api.sen.se/events/?sense_key=' + sen_se_api_key
 				sen_se_data = json.dumps({"feed_id":sen_se_temperature_id, "value":temperature})
-				urllib.urlopen(sen_se_endpoint, sen_se_data)
+				try:
+					urllib.urlopen(sen_se_endpoint, sen_se_data)
+				except:
+					print('ERROR: upload to Sen.se #1')
 				sen_se_data = json.dumps({"feed_id":sen_se_humidity_id, "value":humidity})
-				urllib.urlopen(sen_se_endpoint, sen_se_data)
+				try:
+					urllib.urlopen(sen_se_endpoint, sen_se_data)
+				except:
+					print('ERROR: upload to Sen.se #2')
 			
 
