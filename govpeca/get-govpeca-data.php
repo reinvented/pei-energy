@@ -39,6 +39,7 @@
   */
 if ($_GET) {
   $format = $_GET['format'];
+  $callback = $_GET['callback'];
 }
 else if ($argv[1]) {
   $format = $argv[1];
@@ -119,6 +120,10 @@ else if ($format == "json") {
   header('Content-Disposition: attachment; filename="govpeca.json"');
 
   print json_encode($govpeca_data);
+}
+else if (($format == "jsonp") and ($callback != "")) {
+  header('Content-type: application/javascript');
+  print $callback . "(" . json_encode($govpeca_data) . ")";
 }
 else if ($format == "pachube") {
   header('Content-type: application/json');
