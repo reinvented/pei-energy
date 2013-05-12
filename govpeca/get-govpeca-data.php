@@ -118,7 +118,9 @@ if ($format == "xml") {
 else if ($format == "json") {
   header('Content-type: application/json');
   header('Content-Disposition: attachment; filename="govpeca.json"');
-
+  print json_encode($govpeca_data);
+}
+else if ($format == "json-noheaders") {
   print json_encode($govpeca_data);
 }
 else if (($format == "jsonp") and ($callback != "")) {
