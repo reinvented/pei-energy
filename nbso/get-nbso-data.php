@@ -3,8 +3,8 @@
   * get-nbso-data.php
   *
   * A PHP script to retrieve "Net Scheduled Interchange" data from the
-  * New Brunswick System Operator public "System Information" web page
-  * (http://www.nbso.ca/Public/en/SystemInformation_realtime.asp) 
+  * NB Power public "System Information" web page
+  * (http://tso.nbpower.com/Public/en/SystemInformation_realtime.asp) 
   * and return in JSON or XML.
   *
   * Requires XML_Serializer -- install with 'pear install XML_Serializer'.
@@ -53,7 +53,7 @@ if (!$format) {
 date_default_timezone_set("America/Halifax");
 
 /**
-  * These are the columns of data present on http://www.nbso.ca/Public/en/SystemInformation_realtime.asp
+  * These are the columns of data present on http://tso.nbpower.com/Public/en/SystemInformation_realtime.asp
   */
 $nsbo_columns = array(
                   array("id" => "NB-Load",      "tags" => array("NewBrunswick","NBPower","nb","load")),
@@ -66,9 +66,9 @@ $nsbo_columns = array(
                   );
 
 /**
-  * Grab the NBSO System Information web page so that data can be scraped out of it.
+  * Grab the NB Power System Information web page so that data can be scraped out of it.
   */
-$nsbo = "http://www.nbso.ca/Public/en/SystemInformation_realtime.asp";
+$nsbo = "http://tso.nbpower.com/Public/en/SystemInformation_realtime.asp";
 $handle = fopen($nsbo,'rb');
 $html = stream_get_contents($handle);
 fclose($handle);
@@ -129,14 +129,14 @@ else if ($format == "pachube") {
   header('Content-type: application/json');
   header('Content-Disposition: attachment; filename="nbso.json"');
  
-  $nbso_pachube['title'] = "New Brunswick System Operator Net Scheduled Interchange";
-  $nbso_pachube['description'] = "Data from the New Brunswick System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island. NOTE that this is NOT an official project of the NBSO. Negative values are energy sent TO New Brunswick and positive values are energy pulled FROM New Brunswick.";
+  $nbso_pachube['title'] = "NB Power System Operator Net Scheduled Interchange";
+  $nbso_pachube['description'] = "Data from the NB Power System Operator on Net Scheduled Interchange to and from Nova Scotia, Quebec, New England and Prince Edward Island. NOTE that this is NOT an official project of the NBSO. Negative values are energy sent TO New Brunswick and positive values are energy pulled FROM New Brunswick.";
   $nbso_pachube['feed'] = "http://energy.reinvented.net/pei-energy/nbso/get-nbso-data.php?format=pachube";
-  $nbso_pachube['website'] = "http://www.nbso.ca/Public/en/SystemInformation_realtime.asp";
+  $nbso_pachube['website'] = "http://tso.nbpower.com/Public/en/SystemInformation_realtime.asp";
   $nbso_pachube['email'] = "reinvented+nbso@gmail.com";
-  $nbso_pachube['version'] = "1.0.0";  
+  $nbso_pachube['version'] = "2.0.0";  
   $nbso_pachube['updated'] = strftime("%Y-%m-%dT%H:%M:%S");
-  $nbso_pachube['location']['name'] = "New Brunswick System Operator";
+  $nbso_pachube['location']['name'] = "NB Power";
   $nbso_pachube['location']['lat'] = "45.9658658";
   $nbso_pachube['location']['lon'] = "-66.5975653";
   $nbso_pachube['tags'] = array("energy","interchange","reliabilitycoordinator","nerc");
