@@ -39,6 +39,7 @@
   */
 if ($_GET) {
   $format = $_GET['format'];
+  $noheader = $_GET['noheader'];
 }
 else if ($argv[1]) {
   $format = $argv[1];
@@ -120,8 +121,11 @@ if ($format == "xml") {
   }
 }
 else if ($format == "json") {
-  header('Content-type: application/json');
-  header('Content-Disposition: attachment; filename="nbso.json"');
+
+  if (!$noheader) {
+    header('Content-type: application/json');
+    header('Content-Disposition: attachment; filename="nbso.json"');
+  }
 
   print json_encode($nbso_data);
 }
